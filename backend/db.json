@@ -1,0 +1,14 @@
+{
+  "users": [
+    { "id": 1, "name": "Nguyen Van A", "email": "a@example.com" },
+    { "id": 2, "name": "Tran Thi B", "email": "b@example.com" }
+  ],
+  "posts": [
+    { "id": 1, "title": "First Post", "content": "Hello World", "userId": 1 },
+    { "id": 2, "title": "Second Post", "content": "Mobile Dev", "userId": 2 }
+  ],
+  "comments": [
+    { "id": 1, "body": "Great post!", "postId": 1 },
+    { "id": 2, "body": "Thanks!", "postId": 1 }
+  ]
+}

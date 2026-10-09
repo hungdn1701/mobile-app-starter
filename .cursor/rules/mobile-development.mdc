@@ -1,0 +1,12 @@
+---
+description: Rules for Mobile App Development Starter
+globs: app/**/*
+---
+
+# Mobile App Starter Rules
+
+1. Read `.ai/AGENTS.md` for core architectural principles (MVVM/Clean Architecture).
+2. Always ensure separation of concerns: UI, State, Domain, Data.
+3. Use environment variables for all API endpoints.
+4. Assume a local mock API is available at `http://localhost:3000`.
+5. Implement loading states and error boundaries for all asynchronous actions.
