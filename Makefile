@@ -15,7 +15,7 @@ api-down: ## Stop the mock API
 api-logs: ## View mock API logs
 	docker compose logs -f api
 
-api-reset: ## Reset the mock API (down and up)
+api-reset: ## Restart the mock API (reloads backend/db.json)
 	docker compose down
 	docker compose up -d
 

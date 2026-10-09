@@ -20,6 +20,8 @@ docker run -p 3000:3000 mock-api
 
 ## 📝 Customizing Data
 
+Adapt `db.json` to your own domain — the sample collections are only examples.
+
 You can customize the mock data by editing `db.json`. Any changes to this file will be automatically reloaded by the json-server.
 
 The server provides full RESTful routes (GET, POST, PUT, PATCH, DELETE) for all resources defined in `db.json`.

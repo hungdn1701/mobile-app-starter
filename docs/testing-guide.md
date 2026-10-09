@@ -1,50 +1,51 @@
-# Hướng dẫn Kiểm thử Ứng dụng Di động (Mobile Testing Guide)
+# Testing Guide & Test Evidence
 
-> 📌 **Tài liệu đồ án môn học**: Phát triển ứng dụng cho thiết bị di động (INT1449)
-
----
-
-## 1. Kim tự tháp Kiểm thử trong Di động (Mobile Test Pyramid)
-
-```
-        / \
-       /   \        E2E Tests (Kiểm thử toàn diện trên thiết bị thật / Maestro)
-      / UI  \       Widget / Component Tests (Kiểm thử giao diện & render)
-     /------- \
-    /   Unit   \    Unit Tests (Kiểm thử ViewModel, UseCase, Repository, Utils)
-   /------------\
-```
+> Part 1 shows **how** to test a mobile app. Part 2 is **your evidence** — graded under B1/B2.
+> All results must come from actually running your app (see `INSTRUCTION.md` §7).
 
 ---
 
-## 2. Kiểm thử Đơn vị (Unit Testing)
+## Part 1 — How to Test
 
-Tập trung kiểm thử logic nghiệp vụ không phụ thuộc vào thiết bị phần cứng:
+### 1.1 Automated tests
 
-### Các trường hợp cần viết Unit Test:
-1. **Model Validation**: Kiểm tra tính hợp lệ của email, số điện thoại, độ dài mật khẩu.
-2. **ViewModel / State Reducer**: Khi nhận sự kiện X, ViewModel có phát ra State Y tương ứng hay không.
-3. **Repository Mocking**: Giả lập API trả về thành công hoặc lỗi để kiểm tra cách xử lý ngoại lệ.
+| Level | What to test | Examples of tools |
+|-------|-------------|-------------------|
+| Unit | ViewModels (event → state), repositories with a fake API, validation logic | JUnit/MockK, `flutter_test`, Jest, XCTest |
+| UI / widget | A screen renders each UI state correctly | Compose UI tests, widget tests, React Native Testing Library |
+| End-to-end (optional) | A full user flow on a device | Maestro, Espresso, XCUITest, Detox, `integration_test` |
 
-```kotlin
-// Ví dụ Kotlin / MockK cho ViewModel Test
-@Test
-fun `khi fetchUser thanh cong thi UIState phai chuyen sang Success`() = runTest {
-    coEvery { userRepository.getUser(1) } returns User(1, "Hung Dang")
-    viewModel.loadUser(1)
-    assertEquals(UIState.Success, viewModel.state.value)
-}
-```
+A ViewModel test typically: fake the repository → trigger an event → assert the emitted states
+(e.g., `Loading` then `Success(items)`, or `Loading` then `Error`).
+
+### 1.2 Manual scenarios
+
+| Scenario | How |
+|----------|-----|
+| Offline | Enable airplane mode, reopen the app and each data screen |
+| Slow network | Emulator network throttling, or a delay in your backend |
+| Server error / down | `make api-down` while the app is running |
+| Empty data | Empty a collection in `backend/db.json` and `make api-reset` |
+| Rotation & process death | Rotate on each screen; "Don't keep activities" (Android developer options) |
+| Screen sizes & dark mode | Small phone, large phone, tablet; light and dark theme |
 
 ---
 
-## 3. Kiểm thử Giao diện & Đa kích thước màn hình (UI & Responsive Testing)
+## Part 2 — Our Test Evidence
 
-1. **Kiểm thử trên nhiều tỷ lệ màn hình**:
-   - Màn hình nhỏ (ví dụ iPhone SE / máy Android 4.7 inch).
-   - Màn hình tiêu chuẩn (iPhone 15 / Galaxy S24).
-   - Màn hình lớn (Tablet, màn hình gập).
-2. **Kiểm thử xoay màn hình (Orientation Change)**:
-   - Dữ liệu người dùng đang nhập không được bị mất khi xoay từ dọc sang ngang.
-3. **Kiểm thử Dark Mode**:
-   - Toàn bộ văn bản phải đọc được rõ ràng khi chuyển sang chế độ nền tối, không bị chìm màu.
+### Automated tests
+
+*(How to run them, and a summary of results.)*
+
+### Manual scenarios
+
+| # | Scenario | Screen(s) | Result (screenshot / note) | Pass? |
+|:-:|----------|-----------|----------------------------|:-----:|
+| 1 | Offline | | | |
+| 2 | Slow network / timeout | | | |
+| 3 | Server down | | | |
+| 4 | Empty data | | | |
+| 5 | Rotation / process death | | | |
+| 6 | Small screen / tablet / dark mode | | | |
+
+*(Add notes on bugs found by these tests and how you fixed them.)*
