@@ -1,12 +1,17 @@
 ---
-description: Rules for Mobile App Development Starter
-globs: app/**/*
+description: Mobile application development guidelines and architectural constraints for INT1449
+globs: **/*
+alwaysApply: true
 ---
 
-# Mobile App Starter Rules
+# Cursor Rules — Mobile App Development (INT1449)
 
-1. Read `.ai/AGENTS.md` for core architectural principles (MVVM/Clean Architecture).
-2. Always ensure separation of concerns: UI, State, Domain, Data.
-3. Use environment variables for all API endpoints.
-4. Assume a local mock API is available at `http://localhost:3000`.
-5. Implement loading states and error boundaries for all asynchronous actions.
+Full project rules and source of truth: `.ai/AGENTS.md`
+
+## Architecture & Constraints
+- **Technology-agnostic**: Support React Native, Flutter, Kotlin Android, or Swift.
+- **MVVM / Clean Architecture**: Never write networking or business logic directly inside View/Widget components.
+- **Mock backend**: Local REST API running via `docker compose up` on port 3000.
+- **Networking**: Android emulator uses `http://10.0.2.2:3000`, iOS simulator uses `http://localhost:3000`.
+- **UI States**: Every screen with async data must handle 4 states: Loading, Success, Error, Empty.
+- **Specs**: Follow UI specs in `docs/ui-design.md` and architecture specs in `docs/architecture.md`.

@@ -1,23 +1,50 @@
-# 🧪 Testing Guide
+# Hướng dẫn Kiểm thử Ứng dụng Di động (Mobile Testing Guide)
 
-## 📌 Các cấp độ kiểm thử
-Để đảm bảo chất lượng ứng dụng, cần thực hiện kiểm thử ở nhiều cấp độ khác nhau.
+> 📌 **Tài liệu đồ án môn học**: Phát triển ứng dụng cho thiết bị di động (INT1449)
 
-### 1. Unit Tests
-Kiểm thử các hàm logic đơn lẻ, các lớp ViewModel, Repository. Không bao gồm giao diện.
-- **Mục tiêu:** Đảm bảo logic xử lý dữ liệu chính xác, tính toán đúng.
-- **Công cụ đề xuất:** JUnit (Kotlin), XCTest (Swift), Jest (React Native), `flutter test` (Flutter).
+---
 
-### 2. Widget/UI Tests
-Kiểm thử các thành phần giao diện đơn lẻ.
-- **Mục tiêu:** Đảm bảo UI hiển thị đúng, các nút bấm hoạt động và phản hồi chính xác.
-- **Công cụ đề xuất:** Espresso (Android), XCUITest (iOS), React Native Testing Library, Flutter Widget Tests.
+## 1. Kim tự tháp Kiểm thử trong Di động (Mobile Test Pyramid)
 
-### 3. Integration Tests / E2E Tests
-Kiểm thử toàn bộ luồng ứng dụng, từ UI gọi đến API (hoặc Mock API) và phản hồi.
-- **Mục tiêu:** Đảm bảo các thành phần kết nối với nhau một cách trơn tru.
-- **Công cụ đề xuất:** Appium, Detox (React Native), Flutter Integration Tests.
+```
+        / \
+       /   \        E2E Tests (Kiểm thử toàn diện trên thiết bị thật / Maestro)
+      / UI  \       Widget / Component Tests (Kiểm thử giao diện & render)
+     /------- \
+    /   Unit   \    Unit Tests (Kiểm thử ViewModel, UseCase, Repository, Utils)
+   /------------\
+```
 
-## 🎭 Mock Data Strategies
-- Không nên gọi API thực tế trong Unit Tests. Hãy sử dụng thư viện Mock (ví dụ: Mockito) để giả lập phản hồi của API.
-- Đối với E2E Test, sử dụng Mock Backend đính kèm dự án (`make api-up`) để cung cấp môi trường data nhất quán.
+---
+
+## 2. Kiểm thử Đơn vị (Unit Testing)
+
+Tập trung kiểm thử logic nghiệp vụ không phụ thuộc vào thiết bị phần cứng:
+
+### Các trường hợp cần viết Unit Test:
+1. **Model Validation**: Kiểm tra tính hợp lệ của email, số điện thoại, độ dài mật khẩu.
+2. **ViewModel / State Reducer**: Khi nhận sự kiện X, ViewModel có phát ra State Y tương ứng hay không.
+3. **Repository Mocking**: Giả lập API trả về thành công hoặc lỗi để kiểm tra cách xử lý ngoại lệ.
+
+```kotlin
+// Ví dụ Kotlin / MockK cho ViewModel Test
+@Test
+fun `khi fetchUser thanh cong thi UIState phai chuyen sang Success`() = runTest {
+    coEvery { userRepository.getUser(1) } returns User(1, "Hung Dang")
+    viewModel.loadUser(1)
+    assertEquals(UIState.Success, viewModel.state.value)
+}
+```
+
+---
+
+## 3. Kiểm thử Giao diện & Đa kích thước màn hình (UI & Responsive Testing)
+
+1. **Kiểm thử trên nhiều tỷ lệ màn hình**:
+   - Màn hình nhỏ (ví dụ iPhone SE / máy Android 4.7 inch).
+   - Màn hình tiêu chuẩn (iPhone 15 / Galaxy S24).
+   - Màn hình lớn (Tablet, màn hình gập).
+2. **Kiểm thử xoay màn hình (Orientation Change)**:
+   - Dữ liệu người dùng đang nhập không được bị mất khi xoay từ dọc sang ngang.
+3. **Kiểm thử Dark Mode**:
+   - Toàn bộ văn bản phải đọc được rõ ràng khi chuyển sang chế độ nền tối, không bị chìm màu.

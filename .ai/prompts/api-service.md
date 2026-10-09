@@ -1,19 +1,29 @@
 ---
-name: create-api-service
-description: Creates a service class to interact with the Mock Backend
+title: "Create API Client and Repository Layer"
+tool: "any"
+category: "scaffolding"
+difficulty: "beginner"
 ---
 
-# Create API Service
+# Create API Client & Repository Layer
 
-I need to create an API Service to interact with the backend.
+## Context
+Bạn cần tích hợp một endpoint REST API từ Mock Backend (`backend/db.json`) vào ứng dụng di động thông qua lớp Repository (Clean Architecture).
 
-**Resource:** [Insert Resource, e.g., Posts or Users]
-**Endpoints Needed:** [List endpoints, e.g., GET /posts, POST /posts]
+## Thông tin đầu vào
+- Tài nguyên cần gọi: `[/products /users /posts /orders]`
+- Phương thức HTTP: `[GET / POST / PUT / DELETE]`
+- Dữ liệu gửi đi (Request payload): `[JSON schema / Body parameters]`
+- Dữ liệu trả về (Response schema): `[Model / DTO]`
 
-Requirements:
-1. Create a data model/DTO for this resource.
-2. Create an API Service class/file.
-3. Implement methods for the requested endpoints.
-4. Include robust error handling (try/catch).
-5. Read the base URL from the environment configuration.
-6. Assume the mock backend returns data in standard JSON format.
+## Yêu cầu thực hiện
+1. Định nghĩa kiểu dữ liệu (DTO / Data Model / Entity).
+2. Viết hàm gọi API trong Service Layer sử dụng HTTP Client đã cấu hình (Axios / Dio / Retrofit).
+3. Tạo Repository Interface và Implementation tương ứng.
+4. Xử lý bắt lỗi ngoại lệ HTTP (Timeout, 401, 404, 500) và bọc kết quả trong cấu trúc Result (`Result.Success` hoặc `Result.Failure`).
+5. (Tùy chọn) Tích hợp lưu trữ bộ nhớ đệm (Cache) nếu cần hỗ trợ ngoại tuyến.
+
+## Kết quả mong đợi
+- [ ] Model được ánh xạ chính xác với JSON của Mock Backend
+- [ ] Không rò rỉ mã lỗi HTTP thô lên tầng Presentation
+- [ ] Có cơ chế timeout và xử lý ngắt mạng

@@ -1,14 +1,95 @@
 {
   "users": [
-    { "id": 1, "name": "Nguyen Van A", "email": "a@example.com" },
-    { "id": 2, "name": "Tran Thi B", "email": "b@example.com" }
+    {
+      "id": 1,
+      "name": "Nguyễn Văn An",
+      "email": "an.nguyen@ptit.edu.vn",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
+      "role": "student",
+      "token": "mock-jwt-token-user-1"
+    },
+    {
+      "id": 2,
+      "name": "Trần Thị Bình",
+      "email": "binh.tran@ptit.edu.vn",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+      "role": "student",
+      "token": "mock-jwt-token-user-2"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "Điện tử & Công nghệ", "icon": "laptop" },
+    { "id": 2, "name": "Sách & Giáo trình", "icon": "book" },
+    { "id": 3, "name": "Đời sống & Tiện ích", "icon": "coffee" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "name": "Tai nghe chống ồn Bluetooth",
+      "price": 750000,
+      "rating": 4.8,
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
+      "description": "Tai nghe không dây pin trâu 30 giờ, chống ồn chủ động ANC."
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "name": "Bàn phím cơ không dây TKL",
+      "price": 1200000,
+      "rating": 4.9,
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400",
+      "description": "Switch êm ái, kết nối đa thiết bị qua Bluetooth và 2.4GHz."
+    },
+    {
+      "id": 3,
+      "categoryId": 2,
+      "name": "Giáo trình Lập trình Mạng INT1433",
+      "price": 85000,
+      "rating": 5.0,
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400",
+      "description": "Kiến thức nền tảng về Socket, TCP/UDP và ứng dụng phân tán."
+    }
   ],
   "posts": [
-    { "id": 1, "title": "First Post", "content": "Hello World", "userId": 1 },
-    { "id": 2, "title": "Second Post", "content": "Mobile Dev", "userId": 2 }
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Kinh nghiệm học phát triển ứng dụng di động",
+      "content": "Để làm tốt đồ án, hãy nắm vững luồng dữ liệu MVVM và tổ chức UI component sạch sẽ.",
+      "createdAt": "2026-10-09T08:00:00Z",
+      "likes": 42
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "Top 5 công cụ AI hữu ích cho Mobile Developer",
+      "content": "Cursor, Antigravity và Claude Code giúp tăng tốc viết UI và unit test đáng kể.",
+      "createdAt": "2026-10-08T14:30:00Z",
+      "likes": 38
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "Great post!", "postId": 1 },
-    { "id": 2, "body": "Thanks!", "postId": 1 }
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "items": [{ "productId": 1, "quantity": 1 }],
+      "total": 750000,
+      "status": "COMPLETED",
+      "createdAt": "2026-10-08T10:15:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Đơn hàng đã được xác nhận",
+      "message": "Đơn hàng #1 của bạn đã sẵn sàng giao.",
+      "read": false,
+      "createdAt": "2026-10-09T07:00:00Z"
+    }
   ]
 }
