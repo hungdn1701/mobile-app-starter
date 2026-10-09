@@ -34,7 +34,7 @@ make init        # or: cp .env.example .env
 6. In the first week, fill in the **Team** table and **Problem & Idea** section of `README.md`.
 
 > Do **not** fork the public starter repository — forks are public and other teams could copy your work.
-> If the instructor updates the starter during the semester, they will announce what to copy over (CI tells you if `INSTRUCTION.md` is outdated).
+> If the instructor updates the starter during the semester, they will announce what to copy over.
 
 ---
 
@@ -98,9 +98,9 @@ flowchart LR
 
 | Milestone | Checklist |
 |-----------|-----------|
-| **M1 — Proposal** | ☐ Team table + pitch in README ☐ `docs/proposal.md` complete ☐ ownership plan agreed ☐ tag `m1` |
-| **M2 — Design & Skeleton** | ☐ `docs/ui-design.md` (flows, screens, wireframes, tokens, UI states) ☐ `docs/architecture.md` (layers, state, data flow, offline) ☐ app runs with navigation between main screens ☐ one screen loads data through View → ViewModel → Repository → API ☐ tag `m2` |
-| **M3 — Final** | ☐ all screens & flows ☐ four UI states ☐ offline data ☐ tests in `docs/testing-guide.md` ☐ README complete ☐ tag `final` |
+| **M1 — Proposal** | ☐ Team table + pitch in README ☐ `docs/proposal.md` complete ☐ ownership plan agreed |
+| **M2 — Design & Skeleton** | ☐ `docs/ui-design.md` (flows, screens, wireframes, tokens, UI states) ☐ `docs/architecture.md` (layers, state, data flow, offline) ☐ app runs with navigation between main screens ☐ one screen loads data through View → ViewModel → Repository → API |
+| **M3 — Final** | ☐ all screens & flows ☐ four UI states ☐ offline data ☐ tests in `docs/testing-guide.md` ☐ README complete |
 
 **Log AI usage as you go** in [`docs/ai-log.md`](docs/ai-log.md) — two minutes after each significant session is far easier than reconstructing it the night before the deadline.
 
@@ -126,7 +126,7 @@ Split work by **feature** (screen → ViewModel → repository) rather than by l
 
 ## Submission Checklist
 
-Before tagging `final`:
+Before the deadline:
 
 - [ ] **README:** Team, Problem & Idea, screenshots, Architecture, Quick Start, Test evidence — filled in, no template placeholders left.
 - [ ] **AI Disclosure** (README §8) and [`docs/ai-log.md`](docs/ai-log.md) complete.
@@ -137,4 +137,3 @@ Before tagging `final`:
 - [ ] Offline data works in airplane mode.
 - [ ] No hard-coded base URLs or secrets; no build artifacts committed.
 - [ ] Every member can explain every part they claim — see the self-check in [`.ai/ai-guide.md`](.ai/ai-guide.md#4-prepare-for-the-oral-defense).
-- [ ] CI is green on `main`.
