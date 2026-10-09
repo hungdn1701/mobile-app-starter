@@ -10,14 +10,15 @@ This repository is a starter template containing:
 - `/docs/`: Project documentation (UI design, architecture, API integration).
 
 ## 🛡️ Core Constraints
-1. **Technology-Agnostic:** Any mobile framework is valid (React Native, Flutter, Kotlin/Android, Swift/iOS). Adjust your code to the framework the student has chosen in `/app/`.
-2. **Architecture:** Enforce MVVM or Clean Architecture patterns.
-3. **Mock API:** Assume a mock backend is running at `http://localhost:3000` (provided via `docker compose up`).
-4. **Clear Separation of Concerns:** UI -> ViewModel/Controller -> Repository -> API/Local DB.
-5. **Documentation Driven:** Respect the UI/UX documented in `docs/ui-design.md`.
-6. **Environment Variables:** Use environment variables for API configuration (e.g., API Base URL).
-7. **Responsiveness:** Ensure designs are responsive across different mobile screen sizes.
-8. **Robustness:** Implement proper error handling and loading states for all API network calls.
+1. **Instructor's Requirements (INSTRUCTION.md):** You MUST read and strictly adhere to all guidelines, minimum screen counts, and rubrics in `INSTRUCTION.md`. NEVER modify, overwrite, or delete `INSTRUCTION.md`.
+2. **Technology-Agnostic:** Any mobile framework is valid (React Native, Flutter, Kotlin/Android, Swift/iOS). Adjust your code to the framework the student has chosen in `/app/`.
+3. **Architecture:** Enforce MVVM or Clean Architecture patterns.
+4. **Mock API:** Assume a mock backend is running at `http://localhost:3000` (provided via `docker compose up`).
+5. **Clear Separation of Concerns:** UI -> ViewModel/Controller -> Repository -> API/Local DB.
+6. **Documentation Driven:** Respect the UI/UX documented in `docs/ui-design.md`.
+7. **Environment Variables:** Use environment variables for API configuration (e.g., API Base URL).
+8. **Responsiveness:** Ensure designs are responsive across different mobile screen sizes.
+9. **Robustness:** Implement proper error handling and loading states for all API network calls.
 
 ## 📚 Common Frameworks
 - React Native (Expo)

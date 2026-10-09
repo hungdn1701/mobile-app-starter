@@ -7,6 +7,7 @@
 Mobile Application Development university assignment (INT1449) at PTIT. Technology-agnostic, mobile best practices, Mock REST API included.
 
 ## Key Rules
+- **Instructor's Requirements**: Strictly follow all assignment guidelines, minimum screen counts, and rubrics in `INSTRUCTION.md`. NEVER modify or delete `INSTRUCTION.md`.
 - **Technology-agnostic**: Any mobile framework (React Native/Expo, Flutter, Kotlin Jetpack Compose, Swift) is valid.
 - **Architecture**: Enforce MVVM and Clean Architecture patterns (Presentation -> Domain -> Data).
 - **Mock backend**: Local REST API running via `docker compose up` (`http://localhost:3000` / Android `http://10.0.2.2:3000`).

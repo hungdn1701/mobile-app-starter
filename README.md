@@ -13,11 +13,15 @@ Template này được thiết kế theo các quy chuẩn thực tế trong phá
 hỗ trợ tự do lựa chọn framework (React Native / Expo, Flutter, Kotlin Jetpack Compose, Swift),
 tích hợp sẵn dịch vụ Mock REST API qua Docker, và cấu hình tối ưu cho các trợ lý AI (Gemini, Claude, Cursor, Copilot, Windsurf).
 
+> 📜 **Quy chế & Barem chấm điểm**: Đọc kỹ [`INSTRUCTION.md`](INSTRUCTION.md) do giảng viên ban hành trước khi làm bài.  
 > 📖 **Lần đầu sử dụng repo này?** Xem [`GETTING_STARTED.md`](GETTING_STARTED.md) để biết hướng dẫn fork, khởi tạo framework, kết nối Mock API, và checklist nộp bài.
 
 ---
 
-## 👥 Danh sách sinh viên thực hiện
+## 👥 Thông tin Nhóm & Đề tài
+
+- **Tên nhóm**: Nhóm 01 — Phát triển ứng dụng di động
+- **Chủ đề đã đăng ký**: *(Ví dụ: Ứng dụng quản lý chi tiêu cá nhân Offline-First)*
 
 | STT | Họ và tên | Mã sinh viên | Lớp | Vai trò | Tỷ lệ đóng góp |
 |:---:|---|:---:|:---:|---|:---:|
