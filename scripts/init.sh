@@ -1,16 +1,12 @@
-#!/bin/bash
-set -e
-
-echo "🚀 Khởi tạo dự án Mobile App Starter..."
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
 
 if [ ! -f .env ]; then
-    cp .env.example .env
-    echo "✅ Đã tạo file .env từ .env.example"
+  cp .env.example .env
+  echo "Created .env from .env.example"
 else
-    echo "ℹ️ File .env đã tồn tại, bỏ qua."
+  echo ".env already exists — skipped"
 fi
 
-echo ""
-echo "🎉 Khởi tạo hoàn tất!"
-echo "👉 Tiếp theo: Hãy chọn framework mobile bạn muốn sử dụng và khởi tạo dự án trong thư mục 'app/'."
-echo "👉 Tham khảo app/README.md để biết thêm chi tiết."
+echo "Next: start the mock API with 'make api-up', then create your app in app/ (GETTING_STARTED.md §4)."

@@ -2,21 +2,31 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  test-backend:
+  instruction:
+    name: INSTRUCTION.md unchanged
+    # Skipped in the official starter itself — that copy *is* the official version.
+    if: github.repository != 'hungdn1701/mobile-app-starter'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Build and Start Backend
-        run: docker compose up -d
-        
-      - name: Wait for API to be ready
-        run: sleep 5
-        
-      - name: Health Check API
-        run: curl -f http://localhost:3000/users || exit 1
+      - run: bash scripts/check-instruction.sh
+
+  mock-api:
+    name: Mock API starts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start mock API
+        run: docker compose up -d --build
+      - name: Check API responds
+        run: |
+          for i in $(seq 1 30); do curl -fsS http://localhost:3000/db >/dev/null && exit 0; sleep 1; done
+          docker compose logs; exit 1
+      - name: Cleanup
+        if: always()
+        run: docker compose down -v
+
+  # Add a job that builds and tests your app (e.g., ./gradlew test, flutter test, npm test).

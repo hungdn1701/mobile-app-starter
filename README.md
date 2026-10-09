@@ -1,146 +1,156 @@
-# Mẫu Đồ án: Phát triển Ứng dụng cho Thiết bị Di động (INT1449)
+# Project Name
 
-[![Stars](https://img.shields.io/github/stars/hungdn1701/mobile-app-starter?style=social)](https://github.com/hungdn1701/mobile-app-starter/stargazers)
-[![Forks](https://img.shields.io/github/forks/hungdn1701/mobile-app-starter?style=social)](https://github.com/hungdn1701/mobile-app-starter/network/members)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+> **Course:** Mobile Application Development (INT1449) · PTIT · Instructor: Dr. Hung N. Dang
+>
+> *One-sentence pitch: what your app does and for whom.*
 
-> **Môn học**: Phát triển ứng dụng cho thiết bị di động (INT1449)  
-> **Giảng viên**: Hung N. Dang (Đặng Ngọc Hùng) — PTIT  
-> **Template**: Technology-Agnostic · Mobile Best Practices · Mock Backend Included · AI-Assisted
+📜 Assignment brief & grading: [`INSTRUCTION.md`](INSTRUCTION.md) · 🚀 Setup & workflow: [`GETTING_STARTED.md`](GETTING_STARTED.md)
 
-Kho mã nguồn mẫu (starter repository) dành cho bài tập lớn / đồ án môn **Phát triển ứng dụng cho thiết bị di động (INT1449)**.
-Template này được thiết kế theo các quy chuẩn thực tế trong phát triển ứng dụng di động:
-hỗ trợ tự do lựa chọn framework (React Native / Expo, Flutter, Kotlin Jetpack Compose, Swift),
-tích hợp sẵn dịch vụ Mock REST API qua Docker, và cấu hình tối ưu cho các trợ lý AI (Gemini, Claude, Cursor, Copilot, Windsurf).
-
-> 📜 **Quy chế & Barem chấm điểm**: Đọc kỹ [`INSTRUCTION.md`](INSTRUCTION.md) do giảng viên ban hành trước khi làm bài.  
-> 📖 **Lần đầu sử dụng repo này?** Xem [`GETTING_STARTED.md`](GETTING_STARTED.md) để biết hướng dẫn fork, khởi tạo framework, kết nối Mock API, và checklist nộp bài.
+> **Template note:** replace every *(italic placeholder)* below. Sections marked **(mandatory)** are required for grading.
 
 ---
 
-## 👥 Thông tin Nhóm & Đề tài
+## 1. Team (mandatory)
 
-- **Tên nhóm**: Nhóm 01 — Phát triển ứng dụng di động
-- **Chủ đề đã đăng ký**: *(Ví dụ: Ứng dụng quản lý chi tiêu cá nhân Offline-First)*
+| # | Full name | Student ID | Class | GitHub | Role |
+|:-:|-----------|:----------:|:-----:|--------|------|
+| 1 | | | | @ | |
+| 2 | | | | @ | |
+| 3 | | | | @ | |
 
-| STT | Họ và tên | Mã sinh viên | Lớp | Vai trò | Tỷ lệ đóng góp |
-|:---:|---|:---:|:---:|---|:---:|
-| 1 | Nguyễn Văn A (Trưởng nhóm) | B22DCCN001 | D22CQCN01-B | UI/UX Design, Presentation Layer | 50% |
-| 2 | Trần Thị B | B22DCCN002 | D22CQCN01-B | Data Layer, API Integration, SQLite | 50% |
-
----
-
-## 📱 Giới thiệu Ứng dụng & Đối tượng người dùng
-
-*(Mô tả từ 1–2 đoạn văn: Tên ứng dụng của nhóm? Ứng dụng giải quyết nhu cầu gì? Ai là đối tượng sử dụng chính? Ví dụ: Ứng dụng theo dõi chi tiêu cá nhân, Ứng dụng đặt đồ ăn nhanh, Ứng dụng quản lý lịch học và điểm danh, v.v.)*
-
-### 📸 Ảnh chụp màn hình (Screenshots)
-
-*(Đính kèm hình ảnh chụp màn hình ứng dụng từ Emulator/Thiết bị thật)*
-
-| Màn hình Đăng nhập | Màn hình Trang chủ | Màn hình Chi tiết |
-|:---:|:---:|:---:|
-| *(Chèn ảnh)* | *(Chèn ảnh)* | *(Chèn ảnh)* |
+**Topic:** *(e.g., Offline-first personal expense tracker)*
 
 ---
 
-## ✨ Các tính năng chính
+## 2. Problem & Idea (mandatory)
 
-- [x] **Xác thực người dùng**: Đăng nhập, đăng ký, lưu trữ phiên (JWT token an toàn).
-- [ ] **Hiển thị danh sách & Tìm kiếm**: Danh sách sản phẩm/tin tức với Pull-to-refresh và Phân trang (Infinite Scroll).
-- [ ] **Xem chi tiết & Thao tác nghiệp vụ**: *(Mô tả ngắn tính năng cốt lõi)*.
-- [ ] **Lưu trữ dữ liệu cục bộ (Offline-First)**: Lưu bài viết yêu thích / dữ liệu offline bằng SQLite / Room / Hive / AsyncStorage.
-- [ ] **Trải nghiệm UI/UX nhất quán**: Xử lý đầy đủ 4 trạng thái: Loading Skeleton, Empty State, Error State, và Success State.
+- **Problem:** *(What problem are you solving? Who has it?)*
+- **Our idea:** *(Your solution in 2–3 sentences.)*
+- **Target users:** *(Who, and in what situation do they use the app?)*
+- **What makes it non-trivial:** *(e.g., offline sync, a complex multi-step flow, large lists, notifications.)*
+- **Out of scope:** *(What you deliberately do not build.)*
+
+Full proposal: [`docs/proposal.md`](docs/proposal.md)
 
 ---
 
-## 🏗 Kiến trúc ứng dụng (MVVM & Clean Architecture)
+## 3. Screenshots & Features
 
-Ứng dụng tuân theo mô hình phân lớp rõ ràng:
+| *(Screen 1)* | *(Screen 2)* | *(Screen 3)* | *(Screen 4)* |
+|:---:|:---:|:---:|:---:|
+| *(image)* | *(image)* | *(image)* | *(image)* |
+
+*(Put images in `docs/asset/` and reference them, e.g. `![Home](docs/asset/home.png)`.)*
+
+- [ ] **Feature A:** *(short description)*
+- [ ] **Feature B:** *(short description)*
+- [ ] **Offline:** *(which data is available without network)*
+- [ ] **UI states:** Loading / Success / Empty / Error with retry on every data screen
+
+---
+
+## 4. Architecture
 
 ```mermaid
 graph TD
-    subgraph UI Layer [Presentation Layer]
-        V["Views / Screens\n(Widgets / Components)"]
-        VM["ViewModel / BLoC / Controller\n(State Management)"]
-        V <-->|UI State & Events| VM
-    end
-
-    subgraph Domain Layer [Business Logic]
-        UC["Use Cases / Interactors"]
-        VM --> UC
-    end
-
-    subgraph Data Layer [Data Management]
-        REPO["Repository Interface & Impl"]
-        UC --> REPO
-        REMOTE["Remote Data Source\n(REST API via Axios/Retrofit/Dio)"]
-        LOCAL["Local Data Source\n(SQLite / Room / Hive / Storage)"]
-        REPO --> REMOTE
-        REPO --> LOCAL
-    end
-
-    subgraph Backend Mock [Docker Engine]
-        API[("Mock REST API\n(json-server :3000)")]
-        REMOTE <-->|HTTP / JSON| API
-    end
+    V["Views / Screens"] <-->|state ↓ events ↑| VM["ViewModels / state holders"]
+    VM --> R["Repositories"]
+    R --> API["Remote data source<br/>(REST API)"]
+    R --> DB["Local data source<br/>(database / key-value store)"]
+    API <-->|HTTP/JSON| BE[("Mock API (backend/) or own backend")]
 ```
 
-Chi tiết tài liệu thiết kế UI/UX xem tại [`docs/ui-design.md`](docs/ui-design.md) và kiến trúc tại [`docs/architecture.md`](docs/architecture.md).
+| Aspect | Our choice | Why (one line) |
+|--------|-----------|----------------|
+| Framework | | |
+| State management | | |
+| HTTP client | | |
+| Local storage | | |
+
+Details: [`docs/architecture.md`](docs/architecture.md) · UI/UX: [`docs/ui-design.md`](docs/ui-design.md)
 
 ---
 
-## 🚀 Khởi chạy nhanh
+## 5. Quick Start
 
-### 1. Khởi động Mock Backend (Cung cấp API cho App)
 ```bash
-# Khởi tạo file cấu hình môi trường (.env)
-make init
-
-# Chạy Mock API Server
-make api-up
-# Mock API lắng nghe tại http://localhost:3000
+make init && make api-up      # start the mock API on http://localhost:3000 (skip if you use your own backend)
+cd app
+# framework-specific install & run, e.g.:  npm install && npx expo start   |   flutter run
 ```
 
-### 2. Khởi tạo & Chạy Mobile App trong thư mục `app/`
-Vào thư mục `app/` và chạy framework bạn đã chọn (xem hướng dẫn chi tiết tại [`GETTING_STARTED.md`](GETTING_STARTED.md)):
-- **React Native (Expo)**: `npx expo start`
-- **Flutter**: `flutter run`
-- **Android Studio**: Mở thư mục `app/` và bấm Run
+| Run target | API base URL |
+|------------|--------------|
+| Android emulator | `http://10.0.2.2:3000` |
+| iOS simulator | `http://localhost:3000` |
+| Physical device | `http://<computer-LAN-IP>:3000` |
+
+*(Describe where the base URL is configured in your app and any other setup step.)*
 
 ---
 
-## 📂 Cấu trúc thư mục
+## 6. Test Evidence
 
-```
-mobile-app-starter/
-├── README.md                  # Tài liệu tổng quan (sinh viên cập nhật khi nộp)
-├── GETTING_STARTED.md         # Hướng dẫn chi tiết thiết lập framework & kết nối API
-├── Makefile                   # Lệnh tiện ích điều khiển Mock API
-├── docker-compose.yml         # Container hóa dịch vụ Mock REST API
-├── .env.example               # Mẫu cấu hình URL API, Port
-│
-├── app/                       # Mã nguồn ứng dụng Di động (Technology-Agnostic)
-│   ├── README.md              # Hướng dẫn khởi tạo framework trong app/
-│   └── src/                   # Mã nguồn chính (Views, ViewModels, Repositories)
-│
-├── backend/                   # Dịch vụ Mock Backend (REST API giả lập)
-│   ├── Dockerfile
-│   ├── db.json                # Dữ liệu JSON mẫu (Users, Posts, Products, Comments)
-│   └── README.md
-│
-├── docs/                      # Tài liệu đồ án
-│   ├── ui-design.md           # Thiết kế User Flow, Wireframes, Design Tokens
-│   ├── architecture.md        # Hướng dẫn MVVM, Clean Architecture & State Flow
-│   ├── api-integration.md     # Hướng dẫn kết nối REST API, Auth, Offline caching
-│   ├── testing-guide.md       # Hướng dẫn Unit Test & UI Testing
-│   └── asset/
-│       └── wireframes/        # Nơi lưu trữ ảnh phác thảo giao diện
-│
-├── .ai/                       # Cấu hình AI Coding Assistants
-│   ├── AGENTS.md              # Source of truth cho AI agents
-│   ├── vibe-coding-guide.md   # Hướng dẫn vibe coding di động hiệu quả
-│   └── prompts/               # Prompt mẫu (tạo màn hình, tích hợp API, lưu trữ offline)
-│
-└── .devcontainer/             # DevContainer cho VS Code / GitHub Codespaces
-```
+*(Results for: airplane mode, slow/failed requests, empty data, rotation, different screen sizes.
+Full results: [`docs/testing-guide.md`](docs/testing-guide.md).)*
+
+---
+
+## 7. Documentation
+
+| Document | Content |
+|----------|---------|
+| [`docs/proposal.md`](docs/proposal.md) | M1 — problem, idea, scope, plan |
+| [`docs/ui-design.md`](docs/ui-design.md) | Users, flows, screens, wireframes, design tokens |
+| [`docs/architecture.md`](docs/architecture.md) | Layers, state management, data flow, offline strategy |
+| [`docs/api-integration.md`](docs/api-integration.md) | API contract and error handling |
+| [`docs/testing-guide.md`](docs/testing-guide.md) | Test methods and our test evidence |
+| [`docs/ai-log.md`](docs/ai-log.md) | AI usage log |
+
+---
+
+## 8. AI Disclosure (mandatory)
+
+> Policy: [`INSTRUCTION.md` §7](INSTRUCTION.md#7-ai-usage-policy). Disclosing AI use never lowers your score — hiding it does.
+
+### 8.1 Summary
+
+| Tool / model | Used by | Used for | Files / modules | Level |
+|--------------|---------|----------|-----------------|-------|
+| *(e.g., Claude)* | *(member)* | *(e.g., generate list screen, review offline cache)* | *(paths)* | *(Assist / Co-write / Generated)* |
+
+**Levels:** **Assist** — explanations, suggestions, review; we wrote the code. **Co-write** — AI drafted parts, we
+substantially rewrote. **Generated** — AI wrote most of it; we reviewed, tested and can explain it.
+
+### 8.2 Decisions we made ourselves
+
+*(Key design decisions made by the team, possibly after comparing AI-suggested options. E.g., "Kept a single
+source of truth in the local database and refresh it from the API, because users mostly open the app offline.")*
+
+### 8.3 Where AI was wrong — and how we found out
+
+*(At least one concrete example: a bug, wrong assumption or bad design from AI, and how you detected and fixed it.)*
+
+### 8.4 Full log
+
+See [`docs/ai-log.md`](docs/ai-log.md).
+
+---
+
+## 9. Contribution (mandatory)
+
+| Member | Owns (modules / documents) | Key PRs / commits | AI-assisted parts | Contribution % |
+|--------|----------------------------|-------------------|-------------------|:--------------:|
+| | *(e.g., Expenses feature: screen → ViewModel → repository; `docs/ui-design.md`)* | *(e.g., #3, #7)* | *(e.g., chart widget — Generated)* | |
+| | | | | |
+| | | | | |
+
+We confirm the table above is accurate and agreed by all members:
+
+- [ ] Member 1
+- [ ] Member 2
+- [ ] Member 3
+
+---
+
+<sub>Based on the [mobile-app-starter](https://github.com/hungdn1701/mobile-app-starter) template by Hung N. Dang.</sub>

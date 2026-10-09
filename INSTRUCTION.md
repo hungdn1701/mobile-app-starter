@@ -1,99 +1,165 @@
-# HƯỚNG DẪN BÀI TẬP LỚN — MÔN PHÁT TRIỂN ỨNG DỤNG CHO THIẾT BỊ DI ĐỘNG (INT1449)
+# Assignment Brief & Grading Policy — Mobile Application Development (INT1449)
 
-**Giảng viên phụ trách**: TS. Đặng Ngọc Hùng  
-**Khoa**: Công nghệ thông tin 1 — Học viện Công nghệ Bưu chính Viễn thông (PTIT)  
-**Học phần**: Phát triển ứng dụng cho thiết bị di động (INT1449)
+**Instructor:** Dr. Hung N. Dang (Đặng Ngọc Hùng) — hungdn@ptit.edu.vn
+**Faculty:** Information Technology 1 — Posts and Telecommunications Institute of Technology (PTIT)
 
-> ⚠️ **QUY ĐỊNH BẮT BUỘC**: Đây là văn bản quy chế và đề bài chính thức do giảng viên ban hành.  
-> Sinh viên và các trợ lý lập trình AI (Cursor, Claude, Gemini, Copilot, Windsurf) **TUYỆT ĐỐI KHÔNG ĐƯỢC CHỈNH SỬA HOẶC XÓA FILE NÀY**.
-
----
-
-## 🎯 1. Mục tiêu Học phần & Đồ án
-
-Đồ án môn học yêu cầu sinh viên xây dựng một ứng dụng di động hoàn chỉnh, tuân thủ các quy chuẩn công nghiệp:
-- Thiết kế trải nghiệm người dùng (**UI/UX**) đồng nhất, xử lý đầy đủ các trạng thái giao diện.
-- Kiến trúc phân lớp chuẩn mực: **MVVM (Model - View - ViewModel)** hoặc **Clean Architecture**.
-- Tích hợp **REST API** với quản lý phiên xác thực (JWT Token, Interceptors).
-- Quản lý dữ liệu nội bộ và chiến lược ngoại tuyến (**Offline-First / Local Caching**).
-- Đóng gói và kiểm thử trên thiết bị di động thực tế hoặc trình giả lập (Emulator/Simulator).
+> ⚠️ **Official document — read-only.** This file is the assignment brief and grading policy issued by the instructor.
+> Students and AI assistants must **not** edit or delete it. CI checks that it matches the
+> [official version](https://github.com/hungdn1701/mobile-app-starter/blob/main/INSTRUCTION.md).
+> If something is unclear or seems wrong, ask the instructor.
 
 ---
 
-## 🧩 2. Cấu trúc Repository Chuẩn
+## 1. Learning Objectives
 
-```
-mobile-app-starter/
-├── INSTRUCTION.md             # Đề bài & Quy chế giảng viên (FILE NÀY — READ-ONLY)
-├── README.md                  # Báo cáo tổng quan của nhóm sinh viên (kèm ảnh chụp màn hình)
-├── GETTING_STARTED.md         # Hướng dẫn thiết lập môi trường & kết nối API
-├── Makefile                   # Lệnh điều khiển Mock API Server
-├── docker-compose.yml         # Container hóa Mock Backend
-├── .env.example               # Mẫu cấu hình BASE_URL, Port
-├── app/                       # Mã nguồn ứng dụng Di động (Technology-Agnostic)
-│   └── src/                   # Presentation, Domain, Data Layers
-├── backend/                   # Mock REST API phục vụ cho Mobile App
-│   └── db.json                # Cơ sở dữ liệu JSON mẫu
-└── docs/                      # Tài liệu đồ án
-    ├── ui-design.md           # Thiết kế User Flow, Wireframes, Design Tokens
-    ├── architecture.md        # Kiến trúc MVVM & Luồng dữ liệu UDF
-    ├── api-integration.md     # Đặc tả API & Xử lý lỗi mạng
-    └── testing-guide.md       # Báo cáo kiểm thử đa kích thước màn hình
-```
+By completing this project, each team member demonstrates that they can:
+
+- Design a mobile **user experience** around real user needs, including every UI state.
+- Structure an app in layers (**MVVM** or an equivalent separation of UI, state and data).
+- Consume a **REST API** robustly — timeouts, errors, slow or missing network.
+- Persist data **locally** so the app stays useful offline.
+- **Explain and defend** their own design decisions and code — including code produced with AI assistance.
 
 ---
 
-## ⚙️ 3. Yêu cầu Kỹ thuật Bắt buộc
+## 2. Teams & Repository
 
-1. **Công nghệ tự do (Technology-Agnostic)**: Nhóm được phép chọn bất kỳ framework nào:
-   - React Native (khuyến nghị Expo).
-   - Flutter (Dart).
-   - Native Android (Kotlin + Jetpack Compose).
-   - Native iOS (Swift + SwiftUI).
-2. **Quy mô màn hình tối thiểu**: Ứng dụng phải có tối thiểu **4 màn hình chức năng chính**:
-   - Màn hình 1: Đăng nhập / Đăng ký (Xác thực người dùng).
-   - Màn hình 2: Trang chủ / Danh sách nội dung (có Pull-to-refresh và phân trang).
-   - Màn hình 3: Màn hình Chi tiết (Xem chi tiết đối tượng, có thao tác tương tác).
-   - Màn hình 4: Màn hình Cá nhân / Cài đặt / Giỏ hàng.
-3. **Kiến trúc MVVM phân lớp**: View tuyệt đối không gọi trực tiếp API; mọi logic lấy dữ liệu và lưu cache phải thông qua ViewModel/BLoC và Repository.
-4. **4 Trạng thái Giao diện**: Mọi màn hình tải dữ liệu bất đồng bộ bắt buộc phải hiển thị đủ:
-   - *Loading State* (Shimmer Skeleton hoặc Indicator).
-   - *Success State* (Dữ liệu hiển thị trực quan).
-   - *Empty State* (Giao diện thân thiện khi không có dữ liệu).
-   - *Error State* (Thông báo lỗi kèm nút Thử lại - Retry).
-5. **Tích hợp REST API**: Kết nối lấy và gửi dữ liệu tới Mock Backend (`backend/db.json` qua Docker) hoặc Backend thực tế của nhóm.
-6. **Lưu trữ Cục bộ / Ngoại tuyến**: Lưu trữ phiên đăng nhập an toàn và cache ít nhất 1 luồng dữ liệu xem offline (dùng SQLite / Room / Hive / AsyncStorage / EncryptedSharedPreferences).
-7. **Đầy đủ tài liệu thiết kế**: Hoàn thiện [`docs/ui-design.md`](docs/ui-design.md) (User Flow, Design Tokens) và [`docs/architecture.md`](docs/architecture.md).
+| Rule | Detail |
+|------|--------|
+| Team size | **1–3 students. Maximum 3 — no exceptions.** |
+| Repository | Created **only** through the GitHub Classroom link announced by the instructor (private repo, starter files pre-loaded). Do not fork the public starter — your work would be public. |
+| Accounts | Every member commits from **their own** GitHub account. Pair-programmed commits must include a `Co-authored-by:` trailer. |
+| Registration | Fill in the Team table and project pitch at the top of [`README.md`](README.md) in your first week. |
 
 ---
 
-## 💡 4. Gợi ý Chủ đề Đồ án
+## 3. Milestones
 
-Sinh viên có thể lựa chọn một trong các chủ đề sau:
+The project is delivered in **three milestones**. Dates and whether each milestone carries marks or feedback only
+are announced by the instructor for each class.
 
-- **Chủ đề 1 — Ứng dụng Mua sắm & Đặt hàng (E-Commerce / Food Delivery)**: Duyệt danh mục, giỏ hàng, đặt đơn, lịch sử mua hàng, lưu địa chỉ giao hàng offline.
-- **Chủ đề 2 — Ứng dụng Quản lý Tài chính & Chi tiêu Cá nhân (Personal Expense Tracker)**: Thống kê thu chi, biểu đồ trực quan, đặt hạn mức ngân sách, lưu trữ giao dịch hoàn toàn offline kèm đồng bộ server.
-- **Chủ đề 3 — Ứng dụng Tin tức & Diễn đàn Tri thức (News & Community Feed)**: Đọc bài viết, bình luận, lưu bài đọc sau (Bookmarks/Favorites) offline, tìm kiếm theo từ khóa.
-- **Chủ đề 4 — Ứng dụng Quản lý Học tập & Lịch trình (Student Task & Schedule Manager)**: Lịch học, nhắc hạn nộp bài tập lớn, ghi chú bài giảng, đếm ngược ngày thi.
-- **Chủ đề 5 — Ứng dụng Theo dõi Sức khỏe & Thói quen (Habit & Fitness Tracker)**: Theo dõi mục tiêu hàng ngày, ghi nhận tiến độ, thông báo nhắc nhở định kỳ.
+| Milestone | Deliverable | Where | Git tag |
+|-----------|-------------|-------|---------|
+| **M1 — Proposal** | Problem, target users, idea, scope, key screens, ownership plan | [`docs/proposal.md`](docs/proposal.md) | `m1` |
+| **M2 — Design & Walking Skeleton** | Complete UI/UX and architecture design; app runs on an emulator/device with navigation between the main screens and **one screen loading real data** through the full View → ViewModel → Repository → API path | [`docs/ui-design.md`](docs/ui-design.md), [`docs/architecture.md`](docs/architecture.md), `app/` | `m2` |
+| **M3 — Final Product & Oral Defense** | Full app, test evidence, README with **AI Disclosure** and **Contribution**, AI log | Whole repository | `final` |
 
----
-
-## 📊 5. Barem Chấm điểm (Grading Rubric — Thang điểm 10)
-
-| Tiêu chí | Trọng số | Mô tả chi tiết đánh giá |
-|---|:---:|---|
-| **1. Thiết kế Giao diện & Trải nghiệm UI/UX** | **2.5 điểm** | - Giao diện chỉn chu, thẩm mỹ, tuân thủ Design Tokens trong `docs/ui-design.md` (1.0đ)<br>- Xử lý mượt mà đủ 4 trạng thái UI (Loading, Success, Empty, Error có nút Retry) (1.0đ)<br>- Thích ứng linh hoạt với nhiều kích thước màn hình / chế độ xoay (0.5đ) |
-| **2. Kiến trúc Mã nguồn & Quản lý Trạng thái** | **2.5 điểm** | - Phân lớp rõ ràng theo mô hình MVVM / Clean Architecture (View ↔ ViewModel ↔ Repository) (1.5đ)<br>- Quản lý trạng thái (State Management) chặt chẽ, luồng dữ liệu một chiều UDF, không render thừa (1.0đ) |
-| **3. Tích hợp REST API & Hỗ trợ Ngoại tuyến** | **2.5 điểm** | - Gọi API ổn định, có interceptor xác thực token, xử lý ngoại lệ mất mạng thân thiện (1.5đ)<br>- Lưu trữ dữ liệu cục bộ (Offline-First / Cache) hoạt động tốt khi bật chế độ máy bay (1.0đ) |
-| **4. Tiêu chuẩn Kỹ thuật & Quản lý Mã nguồn** | **1.0 điểm** | - Mã nguồn sạch sẽ, tuân thủ chuẩn đặt tên, không commit file build rác (`node_modules/`, `build/`, `.gradle/`) (1.0đ) |
-| **5. Báo cáo & Vấn đáp Bảo vệ** | **1.5 điểm** | - Trả lời lưu loát các câu hỏi phản biện của giảng viên, chứng minh được sự thấu hiểu mã nguồn (kể cả phần do AI hỗ trợ viết) (1.0đ)<br>- Báo cáo `README.md` đầy đủ thông tin, có ảnh chụp màn hình ứng dụng thực tế (0.5đ) |
+Tag a milestone with: `git tag m1 && git push origin m1`
 
 ---
 
-## 📋 6. Quy trình Đăng ký & Nộp bài
+## 4. Mandatory Technical Requirements
 
-1. **Thành lập nhóm**: Mỗi nhóm gồm từ **2 đến 3 sinh viên** (hoặc làm cá nhân nếu có lý do đặc biệt).
-2. **Khởi tạo repo**: Fork từ `hungdn1701/mobile-app-starter` về tài khoản GitHub của nhóm.
-3. **Khai báo thông tin**: Cập nhật ngay tên nhóm, danh sách thành viên và chủ đề đã đăng ký vào bảng ở đầu file [`README.md`](README.md).
-4. **Lịch sử Git**: Mọi thành viên phải có commit đóng góp rõ ràng trên GitHub để làm căn cứ đánh giá tỷ lệ hoàn thành.
+1. **Technology-agnostic** — any mobile framework (e.g., React Native/Expo, Flutter, Kotlin + Jetpack Compose, Swift + SwiftUI).
+2. **At least 4 functional screens** that serve your topic's main user flows (not counting splash or empty placeholder screens).
+3. **Layered architecture** — views never call the API or database directly; data flows through a ViewModel (or equivalent state holder) and a repository/data layer.
+4. **UI states** — every screen that loads data asynchronously handles **Loading, Success, Empty and Error (with retry)**.
+5. **REST API integration** — the app reads and writes data over HTTP: the mock backend in `backend/` (adapt `db.json` to your domain) or your own backend.
+6. **Local persistence** — at least one data flow stays usable offline (cache or local-first storage). If your app has user accounts, the session is stored securely.
+7. **No hard-coded configuration** — the API base URL comes from configuration, not literals scattered in code.
+
+---
+
+## 5. Suggested Topics
+
+Choose one of the topics below **or propose your own** (original, well-motivated ideas score higher in criterion A1).
+
+1. **Shopping / Food Ordering** — browse catalog, cart, orders, order history, saved addresses offline.
+2. **Personal Finance Tracker** — income/expense records, charts, budgets, offline-first with sync.
+3. **News & Community Feed** — articles, comments, bookmarks for offline reading, search.
+4. **Student Task & Schedule Manager** — timetable, assignment deadlines, lecture notes, exam countdown.
+5. **Habit & Fitness Tracker** — daily goals, progress history, reminders.
+
+---
+
+## 6. Grading Rubric (10 points)
+
+The rubric is shared by all three of the instructor's project courses (Network Programming, Mobile Application
+Development, Service-Oriented Software Development). Only the course-specific sub-criteria differ.
+
+| Part | Weight | Scored per |
+|------|:------:|-----------|
+| **A. Idea & Design** | **3.0** | Team |
+| **B. Technical Product** | **3.0** | Team |
+| **C. Individual Oral Defense** | **4.0** | **Individual** |
+
+### A. Idea & Design — 3.0 (team)
+
+| Criterion | Points | What earns full marks |
+|-----------|:------:|-----------------------|
+| **A1. Problem & Idea** | 1.0 | A real problem for clearly identified users; justified scope; a reason this should be a mobile app; alternatives were considered. Evidence: `docs/proposal.md`, README §2. |
+| **A2. UI/UX Design** | 1.0 | `docs/ui-design.md`: personas/user needs, user flows, screen inventory, wireframes, design tokens, and the four UI states designed for data screens. |
+| **A3. Architecture & Data Design** | 1.0 | `docs/architecture.md` justifies the layering and state-management choice, documents the data flow, the API contract used, and the offline strategy. |
+
+### B. Technical Product — 3.0 (team)
+
+| Criterion | Points | What earns full marks |
+|-----------|:------:|-----------------------|
+| **B1. App & UI Quality** | 1.5 | Main flows work; all four UI states; consistent with the design; works on different screen sizes and survives rotation / process recreation without losing user input. |
+| **B2. Data Layer** | 1.0 | Layering respected; robust API handling (timeouts, HTTP errors, no network); local persistence works in airplane mode — backed by test evidence in `docs/testing-guide.md`. |
+| **B3. Engineering Hygiene** | 0.5 | Builds from a clean clone following the README; no build artifacts or secrets committed; readable, organized code; meaningful git history. |
+
+### C. Individual Oral Defense — 4.0 (individual)
+
+| Criterion | Points | What earns full marks |
+|-----------|:------:|-----------------------|
+| **C1. Ownership** | 1.5 | Explains the screens/modules they claim in the Contribution table — line by line when asked — including AI-generated code. |
+| **C2. Reasoning** | 1.5 | Justifies design decisions and trade-offs; answers "what if" questions about their design. |
+| **C3. Live Change** | 1.0 | Makes a small change or diagnoses a bug in their own code on the spot. |
+
+**Individual score = A + B (team) + C (individual)**, subject to the adjustments in §7 and §8.
+
+---
+
+## 7. AI Usage Policy
+
+AI assistants (ChatGPT, Claude, Gemini, Copilot, Cursor, ...) are **allowed for every part** of the project —
+ideation, design, code, tests and documentation. What is graded is **your understanding and your decisions**,
+not who typed the code.
+
+1. **Disclose.** The README **AI Disclosure** section and [`docs/ai-log.md`](docs/ai-log.md) are mandatory.
+   A submission without them is not graded until they are completed.
+2. **Own it.** You are responsible for every line in your repository. A part you cannot explain during the oral
+   defense earns **no credit** — in B for the team and in C for you — even if it works.
+3. **Be honest.** Significant AI use that is not disclosed, or a disclosure that contradicts the evidence, is
+   academic dishonesty: the instructor may deduct up to **2.0 points** from A + B and handle the case under PTIT regulations.
+4. **No fabrication.** Test results, logs, screenshots and benchmark numbers must come from actually running your system.
+5. **No secrets.** Never paste passwords, API keys or other people's personal data into AI tools.
+
+> Disclosing AI use never lowers your score. Hiding it does.
+
+---
+
+## 8. Contribution & Individual Assessment
+
+- The README **Contribution** table lists, for each member: the modules/documents they own, their key PRs or commits,
+  and an agreed contribution percentage. **Every member ticks the confirmation box.**
+- Evidence the instructor checks: git history (commits from each member's own account, pull requests),
+  `docs/ai-log.md` entries per member, and answers in the oral defense.
+- Oral-defense questions target the parts each member **claims**.
+- A member with no verifiable contribution (no commits/PRs and unable to explain the parts they claim) may receive a
+  reduced share of A + B, down to 0, at the instructor's decision.
+
+---
+
+## 9. Oral Defense
+
+- **Format:** about 15–20 minutes per team (adjusted per class). Every member answers individually; teammates may not
+  answer for each other.
+- **Demo first:** fresh start of the mock/own backend, then the app on an emulator or device — including airplane mode.
+- **Questions are drawn from:** your proposal, design documents, the code you claim, and your `ai-log.md` entries.
+- **Sample questions:**
+  - Walk through everything that happens from a pull-to-refresh to the list updating on screen.
+  - Where does the state of this screen live? What happens to it on rotation or when the app is killed in the background?
+  - What does the user see when the request times out? When the list is empty? Show the code path.
+  - What is your offline strategy, and what happens when cached data and server data disagree?
+  - Why this state-management approach instead of another?
+  - *(Live)* Add a field to a screen end-to-end, or change how an error is displayed.
+
+---
+
+## 10. Final Submission
+
+- The final submission is the **last commit on `main` before the deadline**, tagged `final`.
+- Before tagging, complete the **Submission Checklist** in [`GETTING_STARTED.md`](GETTING_STARTED.md#submission-checklist).
+- Late submissions and resubmissions follow the policy announced by the instructor.
