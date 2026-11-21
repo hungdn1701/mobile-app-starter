@@ -1,4 +1,4 @@
-.PHONY: help init api-up api-down api-logs api-reset clean
+.PHONY: help init api-up api-down api-logs api-reset smoke clean
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -18,6 +18,9 @@ api-logs: ## View mock API logs
 api-reset: ## Restart the mock API (reloads backend/db.json)
 	docker compose down
 	docker compose up -d
+
+smoke: ## Check that the mock API answers with JSON (start it first with make api-up)
+	@bash scripts/smoke-test.sh
 
 clean: ## Clean up Docker resources
 	docker compose down -v

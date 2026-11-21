@@ -1,0 +1,44 @@
+# CI example — NOT enabled. GitHub only runs workflows placed under .github/workflows/.
+# Turn it on once your repo has code worth checking:
+#   mkdir -p .github/workflows && cp docs/ci-example.yml .github/workflows/ci.yml
+# Why it is off by default: an empty template has nothing to test, and every fork running
+# CI on each push spends GitHub Actions minutes.
+#
+# Job `api` starts the mock API and runs the smoke test (same as `make api-up && make smoke`).
+# Job `app` is a sketch: uncomment the block for the framework you chose, or write your own.
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: cp .env.example .env
+      - run: docker compose up -d --build
+      - run: bash scripts/smoke-test.sh
+      - if: always()
+        run: docker compose down -v
+
+  # app:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #
+  #     # Flutter
+  #     - uses: subosito/flutter-action@v2
+  #     - run: cd app && flutter pub get && flutter analyze && flutter test
+  #
+  #     # React Native / Expo
+  #     - uses: actions/setup-node@v5
+  #       with: { node-version: '22' }
+  #     - run: cd app && npm ci && npm test
+  #
+  #     # Android (Kotlin + Gradle)
+  #     - uses: actions/setup-java@v5
+  #       with: { distribution: temurin, java-version: '21' }
+  #     - run: cd app && ./gradlew test

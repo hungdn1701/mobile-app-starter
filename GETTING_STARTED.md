@@ -33,6 +33,7 @@ every top-level key becomes a REST resource with full CRUD.
 ```bash
 make api-up      # start on http://localhost:3000
 make api-logs    # watch requests from your app
+make smoke       # quick check: does the mock API answer with JSON?
 make api-down    # stop
 ```
 
@@ -42,6 +43,7 @@ make api-down    # stop
 - Write requests (`POST/PUT/PATCH/DELETE`) modify `backend/db.json` itself. To restore the original data:
   `git checkout backend/db.json && make api-reset`.
 - You may replace the mock with your own backend; document how to run it in the README.
+- CI is not enabled by default. When you have code, copy `docs/ci-example.yml` to `.github/workflows/ci.yml`.
 
 ### Reaching the API from the app
 
